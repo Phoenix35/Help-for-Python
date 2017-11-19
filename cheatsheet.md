@@ -152,12 +152,12 @@ Si on veut *juste* **transformer un flottant en entier**,
 
 | Opérateurs bit-à-bit  | Explication                                     | Exemple |
 | --------------------- |:-----------------------------------------------:| ------- |
-| x `|` y        | Retourne le `OR` de deux entiers                |         |
+| x <code>&verbar;</code> y | Retourne le `OR` de deux entiers                |         |
 | x `^` y               | Retourne le `XOR` de deux entiers               |         |
 | x `&` y               | Retourne le `AND` de deux entiers               |         |
 | x `<<` n              | Left-shift avec perte d'un nombre par un autre  |         |
 | x `>>` n              | Right-shift avec perte d'un nombre par un autre |         |
-| ~x                    | Inverse les bits d'un nombre                    | ` `     |
+| ~x                    | Inverse les bits d'un nombre                    |      |
 
 ---
 
