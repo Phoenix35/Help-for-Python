@@ -13,74 +13,17 @@
 **Cette antisèche (cheatsheet en anglais) sert à référencer les outils de Python
 pour un accès rapide.**
 
-<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+<TOC
 
-- [Python cheatsheet](#python-cheatsheet)
-	- [Avant-propos](#avant-propos)
-	- [Types de variables](#types-de-variables)
-		- [Numérique](#numrique)
-			- [Modules utiles](#modules-utiles)
-			- [Complexes - `complex`](#complexes-complex)
-				- [Propriétés](#proprits)
-				- [Opérateurs](#oprateurs)
-				- [Modules](#modules)
-			- [Flottants - `float`](#flottants-float)
-				- [Propriétés](#proprits)
-				- [Opérateurs](#oprateurs)
-				- [Modules](#modules)
-			- [Entiers - `int`](#entiers-int)
-				- [Propriétés](#proprits)
-				- [Opérateurs](#oprateurs)
-		- [Itérateur](#itrateur)
-				- [Concepts](#concepts)
-		- [Séquence](#squence)
-				- [Propriétés](#proprits)
-				- [Opérateurs](#oprateurs)
-			- [Muable - `list`](#muable-list)
-			- [Immuable - `tuple`](#immuable-tuple)
-			- [Suite de nombres immuable - `range`](#suite-de-nombres-immuable-range)
-			- [Chaine de caractères immuable - `str`](#chaine-de-caractres-immuable-str)
-				- [Ordre lexicographique](#ordre-lexicographique)
-				- [String formatting](#string-formatting)
-		- [Collection](#collection)
-			- [Données arbitraires - `dict`](#donnes-arbitraires-dict)
-			- [Données uniques muable - `set`](#donnes-uniques-muable-set)
-			- [Données uniques immuable - `frozenset`](#donnes-uniques-immuable-frozenset)
-		- [Autres types natifs](#autres-types-natifs)
-			- [Fonctions](#fonctions)
-			- [Type](#type)
-				- [None](#none)
-			- [Booléens - `True` `False`](#boolens-true-false)
-	- [Opérateurs](#oprateurs)
-		- [`bool`](#bool)
-			- [`not`](#not)
-		- [`is`](#is)
-	- [Fonctions natives](#fonctions-natives)
-		- [`all`](#all)
-		- [`any`](#any)
-		- [`bool`](#bool)
-
-<!-- /TOC -->
-
----
-
----
-
----
-## Avant-propos
+# Avant-propos
 
 Si une opération ou un opérateur est présente dans plusieurs sous-classes,
 et qu'elle a la même fonctionnalité que la classe dont elle hérite,
 elle n'est pas répétée.  
 Pour faire un test d'appartenance, il est préférable d'utiliser `isinstance`.
 
----
-
----
-
----
-## Types de variables
-### Numérique
+# Types de variables
+## Numérique
 ``` python
 2.0 + 0j # complex
 2.0      # float
@@ -88,7 +31,10 @@ Pour faire un test d'appartenance, il est préférable d'utiliser `isinstance`.
 ```
 Ces nombres ont la même valeur mais avec des types de plus en restrictifs.  
 Chaque type rajoute une couche d'abstraction.  
-On pourra appliquer plus de fonctions sur les entiers que sur les flottants que sur les complexes.  
+On pourra appliquer plus de fonctions
+sur les entiers
+que sur les flottants
+que sur les complexes.  
 Pour avoir une hiérarchie, il faudra utiliser `numbers`.  
 **Attention** : les calculs se font souvent à virgule flottante
 et sont donc **imprécis**.  
@@ -97,16 +43,16 @@ pour une égalité approximative
 utiliser la formule `abs(a-b) <= max(1e-09 * max(abs(a), abs(b)), 0)`
 ou dès Python 3.5 `math.isclose`.
 
-#### Modules utiles
+### Modules utiles
 `cmath`, `math`, `numbers`, `numpy`, `scipy`
 
 ---
-#### Complexes - `complex`
+### Complexes - `complex`
 Les complexes sont écrits sous la forme `a + bj`  
 où `a` et `b` sont des réels  
 et `j` est le i classique.
 
-##### Propriétés
+#### Propriétés
 
 | Propriétés / Opérations  | Explication                                                                                | Exemple                                    |
 | ------------------------ |:------------------------------------------------------------------------------------------:| ------------------------------------------ |
@@ -117,7 +63,7 @@ et `j` est le i classique.
 | `complex(re[, im])`      | Retourne le complexe de partie réelle `re` et de partie imaginaire `im`. `im`=0 par défaut | `complex(1, -(1/10)) == 1 -0.1j`           |
 | `isinstance(x, complex)` | Retourne `True` si `x` est un complexe, `False` sinon                                      | `isinstance(2.0, complex) == False`        |
 
-##### Opérateurs
+#### Opérateurs
 
 | Opérateurs            | Explication                                | Exemple             |
 | --------------------- |:------------------------------------------:| ------------------- |
@@ -129,7 +75,7 @@ et `j` est le i classique.
 | x `==` y              | **Compare** l'égalité de deux nombres      |                     |
 | x `!=` y              | **Compare** l'inégalité de deux nombres    | ` `                 |
 
-##### Modules
+#### Modules
 
 | Fonctions spécifiques de modules | Explication                                                  | Exemple                                                          |
 | -------------------------------- |:------------------------------------------------------------:| ---------------------------------------------------------------- |
@@ -140,7 +86,7 @@ et `j` est le i classique.
 | `cmath.rect(r, phi)`             | Retourne le complexe de coordonnées polaires (`r`, `phi`)    | `rect(abs(1 -1j), phase(1 -1j)) ≈ 1 -1j`                         |
 
 ---
-#### Flottants - `float`
+### Flottants - `float`
 Hérite de `complex`  
 Toute valeur numérique **non complexe** a pour **partie imaginaire 0**
 et pour **conjugué elle-même**.  
@@ -148,7 +94,7 @@ et pour **conjugué elle-même**.
 et sont donc **imprécis**.  
 `==` signifie ici ≈
 
-##### Propriétés
+#### Propriétés
 
 | Propriétés / Opérations    | Explication                                                                 | Exemple                                          |
 | -------------------------- |:---------------------------------------------------------------------------:| ------------------------------------------------ |
@@ -160,7 +106,7 @@ et sont donc **imprécis**.
 | `float(x)`                 | **Coerce** `x` à un nombre à virgule flottante                              | `float("3.4") == 3.4`                            |
 | `isinstance(x, float)`     | Retourne `True` si `x` est un flottant, `False` sinon                       | `isinstance(2.0, float) == True`                 |
 
-##### Opérateurs
+#### Opérateurs
 
 | Opérateurs  | Explication                                        | Exemple                           |
 | ----------- |:--------------------------------------------------:| --------------------------------- |
@@ -171,7 +117,7 @@ et sont donc **imprécis**.
 | x `>` y     | **Compare** la supériorité stricte de deux nombres |                                   |
 | x `>=` y    | **Compare** la supériorité de deux nombres         | ` `                               |
 
-##### Modules
+#### Modules
 
 | Fonctions spécifiques de modules | Explication                                         | Exemple                               |
 | -------------------------------- |:---------------------------------------------------:| ------------------------------------  |
@@ -179,32 +125,34 @@ et sont donc **imprécis**.
 | `math.trunc(x)`                  | Retourne `x` tronqué en entier                      | `trunc(-1.1) == -1`                   |
 | `math.floor(x)`                  | Retourne le plus petit entier <= `x`                | `floor(-1.1) == -2`                   |
 | `math.ceil(x)`                   | Retourne le plus petit entier >= `x`                | `ceil(-1.1) == -1`                    |
+
 `floor` et `ceil` sont lents.
 Si la rapidité est un problème, utiliser `// 1` et `// 1 + 1` respectivement.
 
 ---
 
-#### Entiers - `int`
+### Entiers - `int`
 Hérite de `float`  
 Les calculs sur entiers sont **exacts**.
 
-##### Propriétés
+#### Propriétés
 
 | Opérations           | Explication                                                              | Exemple                         |
 | -------------------- |:------------------------------------------------------------------------:| ------------------------------- |
 | `pow(x, y, z)`       | `x` `y` et `z` doivent être entiers et `y > 0`. Retourne `pow(x, y) % z` | `pow(30, 20, 7) == 4`           |
 | `int(x [, base])`    | **Coerce** `x` à un entier en base `base`. `base`=10 par défaut          | `int(3.4) == 3`                 |
 | `isinstance(x, int)` | Retourne `True` si `x` est un entier, `False` sinon                      | `isinstance(2.0, int) == False` |
+
 `trunc` utilise la fonction interne `__trunc__()`
 alors que `int` utilise `__int__()`.  
 Si on veut *juste* **transformer un flottant en entier**,
 `trunc` est plus rapide.
 
-##### Opérateurs
+#### Opérateurs
 
 | Opérateurs bit-à-bit  | Explication                                     | Exemple |
 | --------------------- |:-----------------------------------------------:| ------- |
-| x `&verbar;` y        | Retourne le `OR` de deux entiers                |         |
+| x `|` y        | Retourne le `OR` de deux entiers                |         |
 | x `^` y               | Retourne le `XOR` de deux entiers               |         |
 | x `&` y               | Retourne le `AND` de deux entiers               |         |
 | x `<<` n              | Left-shift avec perte d'un nombre par un autre  |         |
@@ -215,29 +163,30 @@ Si on veut *juste* **transformer un flottant en entier**,
 
 ---
 
-### Itérateur
+## Itérateur
+
 Un itérateur est un type de données
 sur lequel peut être utilisé les concepts d'itérations.  
 C'est la base de la boucle `for`.
 
-##### Concepts
+#### Concepts
 Un item est un élément d'un itérateur.  
 Les deux termes seront utilisés de manière interchangeable.
 
 | Concepts           | Explication                                                   | Exemple                       |
 | ------------------ |:-------------------------------------------------------------:| ----------------------------- |
-| `for`              | Itère sur l'itérateur `x`, chaque item aura pour valeur `elm` | `for elm in x:`               |
+| `for elm in x`     | Itère sur l'itérateur `x`, chaque item aura pour valeur `elm` | `for elm in x:`               |
 | `in`               | Vérifie l'appartenance                                        | `('a' in 'abc') == True`      |
 | `not in`           | Contraire de `in`                                             | `('a' not in 'abc') == False` |
 
 ---
 
 ---
-### Séquence
+## Séquence
 Une séquence est un itérateur **ordonnée** :
 les items peuvent être retrouvés à l'aide d'entiers appelés **indices**.
 
-##### Propriétés
+#### Propriétés
 
 | Propriétés / Opérations  | Explication                                                                                                                                                                    | Exemple                    |
 | ----------- |:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:| --------------------------------- |
@@ -249,7 +198,7 @@ les items peuvent être retrouvés à l'aide d'entiers appelés **indices**.
 | s.`index(x [, i [, j]])` | Retourne l'indice de la première occurence de `x` à partir de l'indice `i` et avant `j`. `ValueError` si l'élément n'est pas trouvé. `i`=0, `j`=len(s) par défaut              | `[1, 2, 3].index(2) == 1`  |
 | s.`count(x)`             | Retourne le nombre d'occurences de `x`                                                                             | `[1, 2, 3].count(15) == 0` |
 
-##### Opérateurs
+#### Opérateurs
 
 | Opérateurs            | Explication                                                                                                                                     | Exemple                  |
 | --------------------- |:-----------------------------------------------------------------------------------------------------------------------------------------------:| ------------------------ |
@@ -257,58 +206,59 @@ les items peuvent être retrouvés à l'aide d'entiers appelés **indices**.
 | s `!=` t              | **Compare** l'inégalité de type, puis de taille, puis de valeurs de deux séquences                                                              | `((1,) != [1]) == True`  |
 | s `+` t               | Retourne la concaténation de deux séquences **de même type**. Ne marche pas pour `range`. **Il ne faut pas concaténer des séquences immuables** | `[1] + [3] == [1, 3]`    |
 | s `* n`               | Retourne `n` références d'une séquence. `n` est un entier. S'il est négatif, il est traité comme 0. Ne marche pas pour `range`                  | `(1,) * 3 == (1, 1, 1)`  |
+
 Les opérateurs de comparaison `<`, `<=`, `>`, `>=`
 ne s'appliquent que sur les séquences **de même type**
 et utilisent l'[**ordre lexicographique**](#ordre-lexicographique)
 
-#### Muable - `list`
+### Muable - `list`
 
-#### Immuable - `tuple`
+### Immuable - `tuple`
 
-#### Suite de nombres immuable - `range`
+### Suite de nombres immuable - `range`
 
-#### Chaine de caractères immuable - `str`
+### Chaine de caractères immuable - `str`
 
-##### Ordre lexicographique
+#### Ordre lexicographique
 - le même ordre que le premier élément inégal :
 `[1, 5] > [1, 2, 8]` car `5 != 2`, donc on utilise l'ordre `5 > 2`
 - si l'élément n'existe pas, la séquence la plus courte est ordonnée avant
 `[1, 2] < [1, 2, 3]`
 - `'0' < '9' < 'A' < 'Z' < 'a' < 'z' < 'À' < 'Ý' < 'à' < 'ÿ'`
 
-##### String formatting
+#### String formatting
 
-### Collection
-#### Données arbitraires - `dict`
+## Collection
+### Données arbitraires - `dict`
 
-#### Données uniques muable - `set`
+### Données uniques muable - `set`
 
-#### Données uniques immuable - `frozenset`
+### Données uniques immuable - `frozenset`
 
-### Autres types natifs
-#### Fonctions
+## Autres types natifs
+### Fonctions
 
-#### Type
+### Type
 
-##### None
+#### None
 
-#### Booléens - `True` `False`
-
-
-## Opérateurs
-
-### `bool`
-
-#### `not`
-
-### `is`
+### Booléens - `True` `False`
 
 
-## Fonctions natives
+# Opérateurs
 
-### `all`
+## `bool`
 
-### `any`
+### `not`
 
-### `bool`
+## `is`
+
+
+# Fonctions natives
+
+## `all`
+
+## `any`
+
+## `bool`
 Voir [`bool`](#bool)
