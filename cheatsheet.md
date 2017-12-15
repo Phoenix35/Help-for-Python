@@ -51,6 +51,7 @@ pour un accès rapide.**
 	- [Itérer sur les **valeurs** d'une *séquence*](#itérer-sur-les-valeurs-dune-séquence)
 	- [Itérer sur les **indices et valeurs** d'une *séquence*](#itérer-sur-les-indices-et-valeurs-dune-séquence)
 	- [Itérer sur **plusieurs valeurs à la fois** d'une *séquence*](#itérer-sur-plusieurs-valeurs-à-la-fois-dune-séquence)
+	- [Itérer sur les **clés** d'un *dictionnaire*](#itérer-sur-les-clés-dun-dictionnaire)
 	- [Itérer sur les **valeurs** d'un *dictionnaire*](#itérer-sur-les-valeurs-dun-dictionnaire)
 	- [Itérer sur les **clés et valeurs** d'un *dictionnaire*](#itérer-sur-les-clés-et-valeurs-dun-dictionnaire)
 	- [Itérer sur les **valeurs** d'un *set*](#itérer-sur-les-valeurs-dun-set)
@@ -279,8 +280,7 @@ et utilisent l'[**ordre lexicographique**](#ordre-lexicographique)
 La séquence immuable (*immutable* en anglais) la plus simple est un `tuple`.  
 Les séquences immuables ne peuvent pas être modifiées.  
 Elles supportent le hash, et peuvent donc être utilisées pour
-des clés de dictionnaires
-et dans des sets.
+des clés de dictionnaires et dans des sets.  
 **Concaténation** : utiliser la propriété `extend` d'une liste.
 
 
@@ -295,11 +295,11 @@ TODO
 TODO
 
 #### Ordre lexicographique
+- `'0' < '9' < 'A' < 'Z' < 'a' < 'z' < 'À' < 'Ý' < 'à' < 'ÿ'`
 - le même ordre que le premier élément inégal :
 `[1, 5] > [1, 2, 8]` car `5 != 2`, donc on utilise l'ordre `5 > 2`
 - si l'élément n'existe pas, la séquence la plus courte est ordonnée avant
 `[1, 2] < [1, 2, 3]`
-- `'0' < '9' < 'A' < 'Z' < 'a' < 'z' < 'À' < 'Ý' < 'à' < 'ÿ'`
 
 #### String formatting
 TODO
@@ -344,20 +344,20 @@ TODO
 On a **très rarement** besoin de faire ça, en général on veut les valeurs.
 ``` python
 for i in range(len(seq)):
-		# i est l'indice
+	# i est l'indice
 ```
 
 ## Itérer sur les **valeurs** d'une *séquence*
 ``` python
 for v in seq:
-		# v est l'élément
+	# v est l'élément
 ```
 
 ## Itérer sur les **indices et valeurs** d'une *séquence*
 ``` python
 for i, v in enumerate(seq):
-		# i est l'indice
-		# v est l'élément
+	# i est l'indice
+	# v est l'élément
 ```
 
 ## Itérer sur **plusieurs valeurs à la fois** d'une *séquence*
@@ -365,31 +365,31 @@ for i, v in enumerate(seq):
 # On slice la séquence
 # tous les n
 for liste_v in (seq[i : i + n] for i in range(0, len(seq), n)):
-		# liste_v est une liste qui contient n éléments
+	# liste_v est une liste qui contient n éléments
 ```
 
 ## Itérer sur les **clés** d'un *dictionnaire*
 ``` python
 # NOTE : sur une séquence ou un set, k contiendrait la valeur
 for k in dico:
-		# k est la clé ("l'indice")
+	# k est la clé ("l'indice")
 ```
 
 ## Itérer sur les **valeurs** d'un *dictionnaire*
 ``` python
 for v in dico.values():
-		# v est la valeur
+	# v est la valeur
 ```
 
 ## Itérer sur les **clés et valeurs** d'un *dictionnaire*
 ``` python
 for k, v in dico.items():
-		# k est la clé
-		# v est la valeur
+	# k est la clé
+	# v est la valeur
 ```
 
 ## Itérer sur les **valeurs** d'un *set*
 ``` python
 for v in s:
-		# v est la valeur
+	# v est la valeur
 ```
