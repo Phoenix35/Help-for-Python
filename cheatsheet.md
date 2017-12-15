@@ -7,7 +7,7 @@ pour un accès rapide.**
 - [Python cheatsheet](#python-cheatsheet)
 - [Avant-propos](#avant-propos)
 - [Types de variables](#types-de-variables)
-	- [Numérique](#numrique)
+	- [Numérique](#numérique)
 		- [Modules utiles](#modules-utiles)
 		- [Complexes - `complex`](#complexes---complex)
 			- [Propriétés](#propriétés)
@@ -47,6 +47,13 @@ pour un accès rapide.**
 		- [`not`](#not)
 	- [`is`](#is)
 - [Comment bien écrire son code - Best practices](#comment-bien-écrire-son-code---best-practices)
+	- [Itérer sur les **indices** d'une *séquence*](#itérer-sur-les-indices-dune-séquence)
+	- [Itérer sur les **valeurs** d'une *séquence*](#itérer-sur-les-valeurs-dune-séquence)
+	- [Itérer sur les **indices et valeurs** d'une *séquence*](#itérer-sur-les-indices-et-valeurs-dune-séquence)
+	- [Itérer sur **plusieurs valeurs à la fois** d'une *séquence*](#itérer-sur-plusieurs-valeurs-à-la-fois-dune-séquence)
+	- [Itérer sur les **valeurs** d'un *dictionnaire*](#itérer-sur-les-valeurs-dun-dictionnaire)
+	- [Itérer sur les **clés et valeurs** d'un *dictionnaire*](#itérer-sur-les-clés-et-valeurs-dun-dictionnaire)
+	- [Itérer sur les **valeurs** d'un *set*](#itérer-sur-les-valeurs-dun-set)
 
 <!-- /TOC -->
 
@@ -246,14 +253,14 @@ les items peuvent être retrouvés à l'aide d'entiers appelés **indices**.
 
 #### Propriétés
 
-| Propriétés / Opérations  | Explication                                                                                                                                                                    | Exemple                    |
-| ----------- |:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:| --------------------------------- |
-| s`[i]`                   | Retourne le `i`-ème élément de la séquence                                                                                                                                     | `[1, 2, 3] [1] == 2`            |
-| s`[ [i [: j [:k]]] ]`    | Retourne la séquence coupé (*slice*) de `i` **inclus** à `j` **exclu** de pas `k`. `i`=*départ*, `j`=*arrivée*, `k`=1 par défaut. Si k est > 0, *départ*=0 et *arrivée*=len(s) | `[1, 2, 3] [1:] == [2, 3]`      |
-| `len(s)`                 | Retourne la taille (longueur) de la séquence `s`                                                                                                                               | `len( [1, 2, 3] ) == 3`         |
-| `reversed(seq)`          | Retourne `seq` inversée                                                                                                                                                        | `next(reversed(range(2))) == 1` |
-| s.`index(x [, i [, j]])` | Retourne l'indice de la première occurence de `x` à partir de l'indice `i` et avant `j`. `ValueError` si l'élément n'est pas trouvé. `i`=0, `j`=len(s) par défaut              | `[1, 2, 3].index(2) == 1`       |
-| s.`count(x)`             | Retourne le nombre d'occurences de `x`                                                                                                                                         | `[1, 2, 3].count(15) == 0`      |
+| Propriétés / Opérations    | Explication                                                                                                                                                                    | Exemple                         |
+| -------------------------- |:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:| ------------------------------- |
+| seq`[i]`                   | Retourne le `i`-ème élément de la séquence                                                                                                                                     | `[1, 2, 3] [1] == 2`            |
+| seq`[ [i [: j [:k]]] ]`    | Retourne la séquence coupé (*slice*) de `i` **inclus** à `j` **exclu** de pas `k`. `i`=*départ*, `j`=*arrivée*, `k`=1 par défaut. Si k est > 0, *départ*=0 et *arrivée*=len(s) | `[1, 2, 3] [1:] == [2, 3]`      |
+| `len(seq)`                 | Retourne la taille (longueur) de la séquence `s`                                                                                                                               | `len( [1, 2, 3] ) == 3`         |
+| `reversed(seq)`            | Retourne `seq` inversée                                                                                                                                                        | `next(reversed(range(2))) == 1` |
+| seq.`index(x [, i [, j]])` | Retourne l'indice de la première occurence de `x` à partir de l'indice `i` et avant `j`. `ValueError` si l'élément n'est pas trouvé. `i`=0, `j`=len(s) par défaut              | `[1, 2, 3].index(2) == 1`       |
+| seq.`count(x)`             | Retourne le nombre d'occurences de `x`                                                                                                                                         | `[1, 2, 3].count(15) == 0`      |
 
 #### Opérateurs
 
@@ -332,4 +339,57 @@ TODO
 TODO
 
 # Comment bien écrire son code - Best practices
-TODO
+
+## Itérer sur les **indices** d'une *séquence*
+On a **très rarement** besoin de faire ça, en général on veut les valeurs.
+``` python
+for i in range(len(seq)):
+		# i est l'indice
+```
+
+## Itérer sur les **valeurs** d'une *séquence*
+``` python
+for v in seq:
+		# v est l'élément
+```
+
+## Itérer sur les **indices et valeurs** d'une *séquence*
+``` python
+for i, v in enumerate(seq):
+		# i est l'indice
+		# v est l'élément
+```
+
+## Itérer sur **plusieurs valeurs à la fois** d'une *séquence*
+``` python
+# On slice la séquence
+# tous les n
+for liste_v in (seq[i : i + n] for i in range(0, len(seq), n)):
+		# liste_v est une liste qui contient n éléments
+```
+
+## Itérer sur les **clés** d'un *dictionnaire*
+``` python
+# NOTE : sur une séquence ou un set, k contiendrait la valeur
+for k in dico:
+		# k est la clé ("l'indice")
+```
+
+## Itérer sur les **valeurs** d'un *dictionnaire*
+``` python
+for v in dico.values():
+		# v est la valeur
+```
+
+## Itérer sur les **clés et valeurs** d'un *dictionnaire*
+``` python
+for k, v in dico.items():
+		# k est la clé
+		# v est la valeur
+```
+
+## Itérer sur les **valeurs** d'un *set*
+``` python
+for v in s:
+		# v est la valeur
+```
